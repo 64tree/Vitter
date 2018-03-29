@@ -1,16 +1,12 @@
 #include "stdafx.h"
 #include "Compression.h"
+#include "Tree.h"
+
 
 Compression::Compression() {
 
-	node NYT{NULL,0,512, NULL, NULL,NULL};
-	node root;
-	root = NYT;
+	Tree tree;
+	tree.add_node('m');
 };
 
 
-void Compression::create_node(symbol)
-{
-	NYT 
-	temp 
-}

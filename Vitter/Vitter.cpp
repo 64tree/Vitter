@@ -31,8 +31,8 @@ int main()
 	}
 	fin.close();
 
-
-	getchar();
+	Compression compression;
+	
 	getchar();
 
     return 0;

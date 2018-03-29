@@ -1,5 +1,7 @@
 #ifndef COMPRESSION_H
 #define COMPRESSION_H
+#include "Node.h"
+#include <vector>
 
 using namespace std;
 
@@ -8,22 +10,17 @@ class Compression
 
 public:
 	// constructors
-	Compression() {}
-	void create_node();
-
-	typedef struct node {
-		unsigned char symbol; // symbol
-		int weight,           // weight
-			number;           // number
-		node *parent,         // parent
-			*left,           // left child
-			*right;          // right child
-	} node;
+	Compression();
+	void add_node(char symbol);
 
 
 
 protected:
-
+	Node *NYT;
+	Node *Root;
+	vector<int> weightList;
+	vector<int> OrderList;
+	
 	// attributes
 
 	
