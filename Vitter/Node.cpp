@@ -44,6 +44,19 @@ Node* Node::getRight(void)
 	return right;
 }
 
+void Node::setSymbol( char symbol)
+{
+	symbol = this->symbol;
+}
+void Node::setWeight(int weight)
+{
+	weight = this->weight;
+}
+void Node::setOrder(int order)
+{
+	order = this->order;
+}
+
 void Node::setParent(Node* parentLocation) 
 {
 	parentLocation = parent;
