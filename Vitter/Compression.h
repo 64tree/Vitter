@@ -11,11 +11,6 @@ public:
 	Compression() {}
 	void create_node();
 
-
-protected:
-
-	// attributes
-
 	typedef struct node {
 		unsigned char symbol; // symbol
 		int weight,           // weight
@@ -24,6 +19,14 @@ protected:
 			*left,           // left child
 			*right;          // right child
 	} node;
+
+
+
+protected:
+
+	// attributes
+
+	
 	
 };
 
