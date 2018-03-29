@@ -3,12 +3,12 @@
 
 using namespace std;
 
-class compression
+class Compression
 {
 
 public:
 	// constructors
-	compression() {}
+	Compression() {}
 	void create_node();
 
 
@@ -17,7 +17,7 @@ protected:
 	// attributes
 
 	typedef struct node {
-		unsigned CompressFile symbol; // symbol
+		unsigned char symbol; // symbol
 		int weight,           // weight
 			number;           // number
 		node *parent,         // parent

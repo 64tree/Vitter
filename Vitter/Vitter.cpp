@@ -16,7 +16,7 @@ int main()
 	cout << "Hello " << filename << ".\n";
 	
 	//first i need to read in a file 
-	int Character;
+	string Character;
 	int *p_loadprogram;
 	vector<string> list;
 
@@ -27,13 +27,11 @@ int main()
 	CompressFile.open(filename.c_str(), ifstream::in); // To open the file.
 	int size = 0; // To clean the array when it opens the file again. 
 
-	if (CompressFile) { // This displays the contents of the file, if it was able to open.    
-
-		CompressFile >> Character;
-		list.push_back(Character);
+	if (CompressFile) { // This displays the contents of the file, if it was able to open.    		
 		while (!CompressFile.eof()) { // It keeps reading the file until it ends.
-			loadprogram[size] = Character;
+			list.push_back(Character);
 			CompressFile >> Character;
+			cout << Character << "\n";
 			size++;
 		}
 		cout << "\nThe Character in the file " << filename << " have been read: " << endl;
@@ -44,7 +42,9 @@ int main()
 	}
 
 	CompressFile.close(); // To close the file.
-
+	getchar();
+	getchar();
+	getchar();
 
     return 0;
 }

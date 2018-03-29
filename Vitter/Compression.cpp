@@ -4,7 +4,7 @@
 
 
 
-void compression::create_node()
+void Compression::create_node()
 {
 
 }
