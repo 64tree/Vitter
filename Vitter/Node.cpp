@@ -46,28 +46,28 @@ Node* Node::getRight(void)
 
 void Node::setSymbol( char symbol)
 {
-	symbol = this->symbol;
+	this->symbol = symbol;
 }
 void Node::setWeight(int weight)
 {
-	weight = this->weight;
+	this->weight = weight;
 }
 void Node::setOrder(int order)
 {
-	order = this->order;
+	this->order = order;
 }
 
 void Node::setParent(Node* parentLocation) 
 {
-	parentLocation = parent;
+	parent =parentLocation ;
 }
 
 void Node::setLeft(Node* leftLocation)
 {
-	leftLocation = left;
+	left = leftLocation ;
 }
 
 void Node::setRight(Node* rightLocaction)
 {
-	rightLocaction = right;
+	right = rightLocaction ;
 }

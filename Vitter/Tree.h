@@ -11,7 +11,7 @@ class Tree
 public:
 	// constructors
 	Tree();
-	void add_node(char symbol);
+	Node* add_node(char symbol);
 
 
 protected:

@@ -10,8 +10,8 @@ Compression::Compression() {
 
 
 	NewWeight = tree.add_node('m');
-	NewWeight = tree.add_node('s');
 
+	NewWeight = tree.add_node('s');
 };
 
 

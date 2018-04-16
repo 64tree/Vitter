@@ -29,8 +29,13 @@ Node* Tree::add_node(char symbol )
 
 	
 	int newOrder = (NYT->getOrder()); //get the order of nyt so i can find new orders 
+	//Node* newParent = NYT;	// get parent locatation for new node 
+	//NYT->setOrder(newOrder - 2);
+	//Node* NewNode = new Node(symbol, 1, (newOrder - 1), newParent, NULL, NULL);
+	//Node* NewWeight = new Node(NULL, 1, (newOrder), (NYT->getParent()), NYT, NewNode);
+	
 
-	Node* NewNYT = new Node(NULL, 0, (newOrder - 2), NYT, NULL, NULL); // setup new nyt with current nyt as parent 
+	Node* NewNYT = new Node(symbol, 0, (newOrder - 2), NYT, NULL, NULL); // setup new nyt with current nyt as parent 
 	Node* NewChar = new Node(symbol, 1, (newOrder - 1), NYT, NULL, NULL); // setup new character with current nyt as parent
 	
 	NYT->setLeft(NewNYT);  //set left node
