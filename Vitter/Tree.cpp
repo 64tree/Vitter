@@ -15,17 +15,20 @@ Tree::Tree(){
 
 Node* Tree::update_tree(Node* current_node) 
 {
-
+	//current_node->getParent()->increaseWeight();
 	//add up the new weights 
 	while(Root != current_node)
 	{
-		current_node->getLeft();
-		current_node->getParent();
-		current_node->getRight();
-	
+		current_node->getParent()->increaseWeight();
+
+		current_node = current_node->getParent();
+
+
 	}
 	return NYT->getParent();
 }	
+
+
 bool Tree::is_char_in_tree(char charToFind) 
 {
 	bool charInTree;
@@ -44,6 +47,7 @@ bool Tree::is_char_in_tree(char charToFind)
 void Tree::increase_char(Node* charIncreaseNode)
 {
 	charIncreaseNode->increaseWeight();
+	charIncreaseNode->getParent()->increaseWeight();
 
 }
 
