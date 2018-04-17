@@ -13,7 +13,8 @@ public:
 	// constructors
 	Tree();
 	Node* add_node(char symbol);
-	Node* update_tree(Node* current_node);
+	void update_tree(Node* current_node);
+	void swap_nodes(Node* node1, Node* node2);
 	Node* find_char(char charToFind);
 	bool is_char_in_tree(char charToFind);
 	void increase_char(Node* charIncreaseNode);

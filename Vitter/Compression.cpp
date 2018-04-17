@@ -18,7 +18,7 @@ Compression::Compression(vector<char> characterlist)
 	Node* NewWeight;
 
 	char characterToEncode;
-	for (int i = 0; i < 6; i++) 
+	for (int i = 0; i < 4; i++) 
 	{
 		characterToEncode = characterlist[i];
 
@@ -28,12 +28,12 @@ Compression::Compression(vector<char> characterlist)
 			charIncreaseNode = tree.find_char(characterToEncode);
 
 			tree.increase_char(charIncreaseNode);
-			tree.update_tree(charIncreaseNode->getParent());
+			tree.update_tree(charIncreaseNode);
 		}
 		else
 		{
 			NewWeight = tree.add_node(characterToEncode);
-			tree.update_tree(NewWeight);
+			tree.update_tree(NewWeight->getRight());
 		}
 
 	}

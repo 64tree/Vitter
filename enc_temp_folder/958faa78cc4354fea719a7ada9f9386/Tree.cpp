@@ -56,7 +56,7 @@ void Tree::update_tree(Node* current_node)
 			if ((current_node->getWeight()) >(NodeRef[i]->getWeight())&& (current_node->getParent() != NodeRef[i]))
 			{
 				swap_nodes(current_node, NodeRef[i]);
-				current_node = NodeRef[i];
+			
 			}
 		}
 		//THIS LINE DOES NOT WORK
