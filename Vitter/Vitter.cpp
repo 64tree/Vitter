@@ -31,7 +31,7 @@ int main()
 	}
 	fin.close();
 
-	Compression compression;
+	Compression compression(characterlist);
 	
 	getchar();
 

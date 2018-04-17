@@ -22,6 +22,7 @@ public:
 	void setParent(Node* parentLocation);
 	void setLeft(Node* rightLocation);
 	void setRight(Node* leftLocation);
+	void increaseWeight(void);
 
 protected:
 

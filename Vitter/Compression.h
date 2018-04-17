@@ -12,6 +12,7 @@ class Compression
 public:
 	// constructors
 	Compression();
+	Compression::Compression(vector<char> characterlist);
 	//void add_node(char symbol);
 	
 

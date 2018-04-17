@@ -3,6 +3,7 @@
 
 #include "Node.h"
 #include <vector>
+#include <string>
 using namespace std;
 
 class Tree
@@ -14,11 +15,9 @@ public:
 	Node* add_node(char symbol);
 	Node* update_tree(Node* current_node);
 	Node* find_char(char charToFind);
-
-	struct nodeData {
-		Node* nodeRef;
-		char symbol;
-	}NodeReference[512];
+	bool is_char_in_tree(char charToFind);
+	void increase_char(Node* charIncreaseNode);
+	int calculateCode(Node* charNode);
 
 protected:
 	
@@ -26,7 +25,6 @@ protected:
 	Node* NYT;
 	Node* Root;
 
-	vector<nodeData> VecNodeReference;
 	vector<Node*>NodeRef;
 	vector<char>CharRef;
 };

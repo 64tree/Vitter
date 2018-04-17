@@ -71,3 +71,9 @@ void Node::setRight(Node* rightLocaction)
 {
 	right = rightLocaction ;
 }
+
+void Node::increaseWeight(void) 
+{
+	this->weight = (this->weight)++;
+
+}

@@ -5,19 +5,46 @@
 
 Compression::Compression() {
 
-	Tree tree;
-	Node* NewWeight;
-
-
-	NewWeight = tree.add_node('m');
-	
-	NewWeight = tree.add_node('s');
-	NewWeight = tree.add_node('w');
-
 	
 
-	NewWeight = tree.find_char('m');
+	
 
 };
 
 
+Compression::Compression(vector<char> characterlist) 
+{
+	Tree tree;
+	Node* NewWeight;
+
+	char characterToEncode;
+	for (int i = 0; i < 6; i++) 
+	{
+		characterToEncode = characterlist[i];
+
+		if (true == tree.is_char_in_tree(characterToEncode))
+		{
+			Node* charIncreaseNode;
+			charIncreaseNode = tree.find_char(characterToEncode);
+
+			tree.increase_char(charIncreaseNode);
+		}
+		else
+		{
+			NewWeight = tree.add_node(characterToEncode);
+		}
+
+	}
+	int value;
+
+	value = tree.calculateCode(tree.find_char('a'));
+
+	int x = 9;
+	//NewWeight = tree.add_node('x');
+	//NewWeight = tree.add_node('g');
+
+
+
+	
+
+}

@@ -9,7 +9,7 @@ Tree::Tree(){
 	Node* Root = new Node(NULL, 0, MAX_NUMBER, NULL, NULL, NULL);
 	this->Root = Root;//THIS IS NOT GOING TO WORK AS POINTING TO THE SAME PLACE ALWAYS 
 
-	//NodeReference.push_back(NYT);
+	NodeRef.push_back(NYT);
 	
 }
 
@@ -26,11 +26,30 @@ Node* Tree::update_tree(Node* current_node)
 	}
 	return NYT->getParent();
 }	
+bool Tree::is_char_in_tree(char charToFind) 
+{
+	bool charInTree;
+	charInTree = false;
+	
+	for (int i = 0; i < (CharRef.size()); i++)
+	{
+		if (CharRef[i] == charToFind) 
+		{
+			charInTree = true;
+		}	
+	}
+	return charInTree;
+}
 
+void Tree::increase_char(Node* charIncreaseNode)
+{
+	charIncreaseNode->increaseWeight();
+
+}
 
 Node* Tree::find_char(char charToFind)
 {
-	for (int i = 0; i < NodeRef.max_size(); i++) 
+	for (int i = 0; i < NodeRef.size(); i++) 
 	{
 		if (charToFind == NodeRef[i]->getSymbol())
 		{
@@ -38,15 +57,6 @@ Node* Tree::find_char(char charToFind)
 		}
 	
 	}
-
-	/*for (int x = 512; x <= (512 -VecNodeReference.max_size()); x--)
-	{
-		if (charToFind == (NodeReference[x].symbol))
-		{
-			return NodeReference[x].nodeRef;
-		}
-	}*/
-
 	
 }
 
@@ -73,13 +83,34 @@ Node* Tree::add_node(char symbol )
 	NodeRef.push_back(NewChar);
 	NodeRef.push_back(NewNYT);
 
-	/*NodeReference[newOrder-1].symbol = symbol;
-	NodeReference[newOrder-1].nodeRef = NewChar;
-	NodeReference[newOrder-2].symbol = symbol;
-	NodeReference[newOrder-2].nodeRef = NewNYT;
-	VecNodeReference.push_back(NodeReference[newOrder - 1]);
-	*/VecNodeReference.push_back(NodeReference[newOrder - 2]);
+    
 	CharRef.push_back(symbol);
 
 	return NYT->getParent(); // return the nyt parent
 }
+
+
+int Tree::calculateCode(Node* charNode) 
+{
+	Node* currentNode;
+	currentNode = charNode;
+	int calculatedCode = 0;
+	while (currentNode!= Root)
+	{
+
+		if ((currentNode) == currentNode->getParent()->getLeft())
+		{
+			calculatedCode += 0b0;
+		}
+		else
+		{
+			calculatedCode += 0b1;
+		
+		}
+			
+		currentNode = currentNode->getParent();
+	}
+	
+	return calculatedCode;
+} 
+
