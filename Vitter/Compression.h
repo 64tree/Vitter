@@ -13,7 +13,7 @@ public:
 	// constructors
 	Compression();
 	//void add_node(char symbol);
-
+	
 
 
 protected:

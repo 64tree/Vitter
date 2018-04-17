@@ -8,25 +8,50 @@ Tree::Tree(){
 	this->NYT = NYT;
 	Node* Root = new Node(NULL, 0, MAX_NUMBER, NULL, NULL, NULL);
 	this->Root = Root;//THIS IS NOT GOING TO WORK AS POINTING TO THE SAME PLACE ALWAYS 
+
+	//NodeReference.push_back(NYT);
+	
 }
 
+Node* Tree::update_tree(Node* current_node) 
+{
+
+	//add up the new weights 
+	while(Root != current_node)
+	{
+		current_node->getLeft();
+		current_node->getParent();
+		current_node->getRight();
+	
+	}
+	return NYT->getParent();
+}	
 
 
+Node* Tree::find_char(char charToFind)
+{
+	for (int i = 0; i < NodeRef.max_size(); i++) 
+	{
+		if (charToFind == NodeRef[i]->getSymbol())
+		{
+			return NodeRef[i];
+		}
+	
+	}
+
+	/*for (int x = 512; x <= (512 -VecNodeReference.max_size()); x--)
+	{
+		if (charToFind == (NodeReference[x].symbol))
+		{
+			return NodeReference[x].nodeRef;
+		}
+	}*/
+
+	
+}
 
 Node* Tree::add_node(char symbol )
 {
-	/*
-	int newOrder = (NYT->getOrder()); //get the order of nyt so i can find new orders 
-	Node* newParent = NYT;	// get parent locatation for new node 
-	Node* NewNode = new Node(symbol, 1, (newOrder-2), newParent, NULL, NULL);
-	Node* NewNYTNode = new Node(NULL, 0, (newOrder - 1), newParent, NULL, NULL);
-	//NYT->setParent(Root);/// this is not the case after the first tree 
-	NYT->setLeft(NewNYTNode);
-	NYT->setRight(NewNode);
-	NYT->setWeight(0);
-	//NYT->setOrder(newOrder - 1);
-	*/
-
 	
 	int newOrder = (NYT->getOrder()); //get the order of nyt so i can find new orders 
 
@@ -44,6 +69,17 @@ Node* Tree::add_node(char symbol )
 	{
 		Root = NYT->getParent();
 	}
+
+	NodeRef.push_back(NewChar);
+	NodeRef.push_back(NewNYT);
+
+	/*NodeReference[newOrder-1].symbol = symbol;
+	NodeReference[newOrder-1].nodeRef = NewChar;
+	NodeReference[newOrder-2].symbol = symbol;
+	NodeReference[newOrder-2].nodeRef = NewNYT;
+	VecNodeReference.push_back(NodeReference[newOrder - 1]);
+	*/VecNodeReference.push_back(NodeReference[newOrder - 2]);
+	CharRef.push_back(symbol);
 
 	return NYT->getParent(); // return the nyt parent
 }
