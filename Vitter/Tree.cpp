@@ -13,6 +13,7 @@ Tree::Tree(){
 	
 }
 
+
 void Tree::swap_nodes(Node* node1, Node* node2)
 {
 	Node temp1 , temp2, temp3;
@@ -28,6 +29,12 @@ void Tree::swap_nodes(Node* node1, Node* node2)
 	//node1->setParent(node2->getParent());
 	node1->setRight(node2->getRight());
 	node1->setLeft(node2->getLeft());
+	if (node1->getLeft() != NULL) 
+	{
+		node1->getLeft()->setParent(node1);
+		node1->getRight()->setParent(node1);
+			
+	}
 
 
 	node2->setWeight(temp1.getWeight());
@@ -36,6 +43,12 @@ void Tree::swap_nodes(Node* node1, Node* node2)
 	node2->setRight(temp1.getRight());
 	node2->setLeft(temp1.getLeft());
 
+	if (node2->getLeft() != NULL)
+	{
+		node2->getLeft()->setParent(node2);
+		node2->getRight()->setParent(node2);
+
+	}
 
 }
 
@@ -45,11 +58,7 @@ void Tree::update_tree(Node* current_node)
 	//add up the new weights 
 	while(Root != current_node)
 	{
-		
-		
-
-		
-		
+				
 		for (int i = 0; i < (512 - (current_node->getOrder()) ); i++)
 		{
 			// if there is a lower weight in a higher order and it is not its parent
@@ -59,7 +68,7 @@ void Tree::update_tree(Node* current_node)
 				current_node = NodeRef[i];
 			}
 		}
-		//THIS LINE DOES NOT WORK
+		
 		current_node->getParent()->increaseWeight();
 
 		current_node = current_node->getParent();
@@ -132,22 +141,22 @@ Node* Tree::add_node(char symbol )
 }
 
 
-int Tree::calculateCode(Node* charNode) 
+string Tree::calculateCode(Node* charNode) 
 {
 	Node* currentNode;
 	currentNode = charNode;
-	int calculatedCode = 0;
+	string calculatedCode = "";
 	while (currentNode!= Root)
 	{
 
 		if ((currentNode) == currentNode->getParent()->getLeft())
 		{
-			calculatedCode += 0b0;
+			calculatedCode.insert(0,"0");
 		}
 		else
 		{
-			calculatedCode += 0b1;
-		
+			calculatedCode.insert(0, "1");
+
 		}
 		//	shift --string maybe 
 		currentNode = currentNode->getParent();
@@ -155,4 +164,12 @@ int Tree::calculateCode(Node* charNode)
 	
 	return calculatedCode;
 } 
+
+
+vector<char> Tree::getCharRef(void) 
+{
+	return CharRef;
+}
+
+
 

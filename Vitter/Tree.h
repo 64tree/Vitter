@@ -10,6 +10,9 @@ class Tree
 {
 
 public:
+
+
+
 	// constructors
 	Tree();
 	Node* add_node(char symbol);
@@ -18,14 +21,15 @@ public:
 	Node* find_char(char charToFind);
 	bool is_char_in_tree(char charToFind);
 	void increase_char(Node* charIncreaseNode);
-	int calculateCode(Node* charNode);
+	string calculateCode(Node* charNode);
+	vector<char> getCharRef(void);
 
 protected:
 	
 	int MAX_NUMBER = 512;
 	Node* NYT;
 	Node* Root;
-
+	
 	vector<Node*>NodeRef;
 	vector<char>CharRef;
 };

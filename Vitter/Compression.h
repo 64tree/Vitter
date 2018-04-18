@@ -3,6 +3,9 @@
 #include "Node.h"
 #include "Tree.h"
 #include <vector>
+#include<bitset>
+#include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -12,10 +15,13 @@ class Compression
 public:
 	// constructors
 	Compression();
-	Compression::Compression(vector<char> characterlist);
-	//void add_node(char symbol);
+	Compression(vector<char> characterlist);
+	void output_to_file(string charEncoded, char Encode);
 	
+	vector<char>CharRef;
 
+
+	ofstream encodeFile;
 
 protected:
 	Node *NYT;
