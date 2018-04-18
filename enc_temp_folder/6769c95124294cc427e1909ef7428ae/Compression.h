@@ -3,8 +3,7 @@
 #include "Node.h"
 #include "Tree.h"
 #include <vector>
-#include <string>
-#include <bitset>
+#include<bitset>
 #include <iostream>
 #include <fstream>
 
@@ -21,11 +20,6 @@ public:
 	void Compress_to_file(string charEncoded);
 	vector<char>CharRef;
 
-	struct huffCode {
-		char ASCI;
-		string huffEncode;
-	
-	};
 
 	ofstream encodeFile;
 

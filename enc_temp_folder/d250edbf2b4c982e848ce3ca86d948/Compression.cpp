@@ -47,13 +47,12 @@ Compression::Compression(vector<char> characterlist)
 	// for each char in the tree
 	for (int x = 0; x < (tree.getCharRef().size()); x++)
 	{
-		/*find the characters Node*/
 		Node* characterNode = tree.find_char(tree.getCharRef()[x]);
-		/*calculate the code*/
+		//find char in tree and calculate the code
 		value = tree.calculateCode(characterNode);
-
 		cout << "The character :"<<(characterNode->getSymbol())<<" The Weight:" <<(characterNode->getWeight())<<" The Huffman Code :" <<value << endl;
 		
+
 		
 		/*convets asci character symbol to binary*/
 		bitset<8> AsciBit = bitset<8>(characterNode->getSymbol());
@@ -64,20 +63,16 @@ Compression::Compression(vector<char> characterlist)
 		huffman_encode.append(BinString);
 
 	}
-
-	char characterToEncode;
-	for (int i = 0; i < 20; i++)
-	{
-		characterToEncode = characterlist[i];
-		
-
-	}
 	/*human Readable binary file */ 
 	/*JUST HUFFCODES*/
 	output_to_file(huffman_encode);
 	
 	Compress_to_file(huffman_encode);
-	
+		int x = 9;
+
+
+		//bitset<string.lenght> sybmol (string ("the Code "))
+		encodeFile.close();
 	}
 
 void Compression::Compress_to_file(string huffcodes)
@@ -124,6 +119,11 @@ void Compression::output_to_file(string charEncoded)
 	}
 }
 	
+/*void Compression::output_to_file(string charEncoded ) 
+{
+	
+	
+}*/
 
 
 
