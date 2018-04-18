@@ -42,6 +42,7 @@ Compression::Compression(vector<char> characterlist)
 	string value;
 	vector<char> ref;
 	ref = tree.getCharRef();
+	string huffman_encode;
 
 	// for each char in the tree
 	for (int x = 0; x < (tree.getCharRef().size()); x++)
@@ -50,32 +51,76 @@ Compression::Compression(vector<char> characterlist)
 		//find char in tree and calculate the code
 		value = tree.calculateCode(characterNode);
 		cout << "The character :"<<(characterNode->getSymbol())<<" The Weight:" <<(characterNode->getWeight())<<" The Huffman Code :" <<value << endl;
-		output_to_file(value, (characterNode->getSymbol()));
+		
+
+		
+		/*convets asci character symbol to binary*/
+		bitset<8> AsciBit = bitset<8>(characterNode->getSymbol());
+		string BinString = AsciBit.to_string();
+		/*add the huffman encode value to string */
+		BinString.append(value);
+		/*add the character and huffmand code to the string */
+		huffman_encode.append(BinString);
+
 	}
-
-
+	/*human Readable binary file */ 
+	/*JUST HUFFCODES*/
+	output_to_file(huffman_encode);
+	
+	Compress_to_file(huffman_encode);
 		int x = 9;
 
 
 		//bitset<string.lenght> sybmol (string ("the Code "))
 		encodeFile.close();
 	}
-	
-	
-void Compression::output_to_file(string charEncoded, char Encode ) 
+
+void Compression::Compress_to_file(string huffcodes)
 {
-	int charValue;
-	charValue = Encode;
-	//ofstream encodeFile("encodeFile.txt");
+	string byte;
 	ofstream encodeFile("encodeFile.bin", ios::binary);
-	if (encodeFile.is_open()) 
+	if (encodeFile.is_open())
+	{
+		for (int i = 0; i < huffcodes.size(); i++)
+		{
+			for (int j = 0; j < 8; j++)
+			{
+				
+				byte.push_back(huffcodes[i + j]);
+
+			}
+			i = i + 6;
+			
+			string byte1 = byte;
+			byte.clear();
+			bitset<8> EncodBit(string byte1);
+			//cout << EncodBit << endl;
+			EncodBit
+			//encodeFile << EncodBit << endl;
+		}
+		
+	}
+	encodeFile.close();
+	
+	
+
+	//for (charEncoded.size();
+}
+
+void Compression::output_to_file(string charEncoded)
+{
+	ofstream encodeFile("encodeFile.txt");
+	if (encodeFile.is_open())
 	{
 		encodeFile << charEncoded << endl;
 	}
-	
-
-	
 }
+	
+/*void Compression::output_to_file(string charEncoded ) 
+{
+	
+	
+}*/
 
 
 

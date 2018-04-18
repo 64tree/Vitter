@@ -16,8 +16,8 @@ public:
 	// constructors
 	Compression();
 	Compression(vector<char> characterlist);
-	void output_to_file(string charEncoded, char Encode);
-	
+	void output_to_file(string charEncoded);
+	void Compress_to_file(string charEncoded);
 	vector<char>CharRef;
 
 
