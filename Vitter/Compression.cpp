@@ -18,7 +18,7 @@ Compression::Compression(vector<char> characterlist)
 	Node* NewWeight;
 
 	char characterToEncode;
-	for (int i = 0; i < 20; i++) 
+	for (int i = 0; i < characterlist.size()-1; i++)
 	{
 		characterToEncode = characterlist[i];
 
@@ -45,7 +45,7 @@ Compression::Compression(vector<char> characterlist)
 	string huffman_encode;
 
 	// for each char in the tree
-	for (int x = 0; x < (tree.getCharRef().size()); x++)
+	for (int x = 0; x < (tree.getCharRef().size()-1); x++)
 	{
 		/*find the characters Node*/
 		Node* characterNode = tree.find_char(tree.getCharRef()[x]);
@@ -65,15 +65,6 @@ Compression::Compression(vector<char> characterlist)
 
 	}
 
-	char characterToEncode;
-	for (int i = 0; i < 20; i++)
-	{
-		characterToEncode = characterlist[i];
-		
-
-	}
-	/*human Readable binary file */ 
-	/*JUST HUFFCODES*/
 	output_to_file(huffman_encode);
 	
 	Compress_to_file(huffman_encode);
@@ -98,21 +89,14 @@ void Compression::Compress_to_file(string huffcodes)
 			
 			string byte1 = byte;
 			byte.clear();
-			//bitset<8> EncodBit(byte1);
-			///EncodBit.test();
-
-			//cout << EncodBit << endl;
+			bitset<8> EncodBit(byte1);
 			
-			//encodeFile << EncodBit << endl;
-			//EncodBit.reset();
+			encodeFile << EncodBit << endl;
+			EncodBit.reset();
 		}
 		
 	}
 	encodeFile.close();
-	
-	
-
-	//for (charEncoded.size();
 }
 
 void Compression::output_to_file(string charEncoded)

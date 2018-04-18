@@ -7,7 +7,7 @@ Tree::Tree(){
 	Node* NYT = new Node(NULL, 0, MAX_NUMBER, NULL, NULL, NULL);
 	this->NYT = NYT;
 	Node* Root = new Node(NULL, 0, MAX_NUMBER, NULL, NULL, NULL);
-	this->Root = Root;//THIS IS NOT GOING TO WORK AS POINTING TO THE SAME PLACE ALWAYS 
+	this->Root = Root;
 
 	NodeRef.push_back(NYT);
 	
@@ -16,61 +16,55 @@ Tree::Tree(){
 
 void Tree::swap_nodes(Node* node1, Node* node2)
 {
-	Node temp1 , temp2, temp3;
-	
-	
+	Node temp1 ;
+	//create temporary node with node1 data in
 	temp1 = *node1;
-	//temp2 = *node2;
-	//temp3 = temp1;
-	//temp1 = temp2;
-	//temp2 = temp3;
+	//copy node2 data into node1 
 	node1->setWeight(node2->getWeight());
 	node1->setSymbol(node2->getSymbol());
-	//node1->setParent(node2->getParent());
 	node1->setRight(node2->getRight());
 	node1->setLeft(node2->getLeft());
+	//if the children nodes are not null need to change their parents to node1
 	if (node1->getLeft() != NULL) 
 	{
 		node1->getLeft()->setParent(node1);
 		node1->getRight()->setParent(node1);
 			
 	}
-
-
+	//copy node1(temp1) data into node2
 	node2->setWeight(temp1.getWeight());
 	node2->setSymbol(temp1.getSymbol());
-	//node2->setParent(temp1.getParent());
 	node2->setRight(temp1.getRight());
 	node2->setLeft(temp1.getLeft());
-
+	//if the children nodes are not null need to change their parents to node2
 	if (node2->getLeft() != NULL)
 	{
 		node2->getLeft()->setParent(node2);
 		node2->getRight()->setParent(node2);
-
 	}
 
 }
 
 void Tree::update_tree(Node* current_node) 
 {
-	//current_node->getParent()->increaseWeight();
-	//add up the new weights 
+	// perform check until you are the root 
 	while(Root != current_node)
 	{
-				
+		// for items of a greater order 		
 		for (int i = 0; i < (512 - (current_node->getOrder()) ); i++)
 		{
-			// if there is a lower weight in a higher order and it is not its parent
+			// if there is a lower weight in a higher order and it is not its parent the nodes need to be swapped
 			if ((current_node->getWeight()) >(NodeRef[i]->getWeight())&& (current_node->getParent() != NodeRef[i]))
 			{
+				//swap nodes
 				swap_nodes(current_node, NodeRef[i]);
+				// chance current node as nodes now swapped
 				current_node = NodeRef[i];
 			}
 		}
-		
+		// increase the parents weight 
 		current_node->getParent()->increaseWeight();
-
+		// change current node to the parent 
 		current_node = current_node->getParent();
 	}
 
@@ -94,16 +88,17 @@ bool Tree::is_char_in_tree(char charToFind)
 
 void Tree::increase_char(Node* charIncreaseNode)
 {
-	charIncreaseNode->increaseWeight();
-	
+	charIncreaseNode->increaseWeight();	
 }
 
 Node* Tree::find_char(char charToFind)
 {
+	/*for every node in tree find the matching character node */
 	for (int i = 0; i < NodeRef.size(); i++) 
 	{
 		if (charToFind == NodeRef[i]->getSymbol())
 		{
+			/*return pointer of node of matching character*/
 			return NodeRef[i];
 		}
 	
@@ -121,7 +116,6 @@ Node* Tree::add_node(char symbol )
 	
 	NYT->setLeft(NewNYT);  //set left node
 	NYT->setRight(NewChar); //set right node
-	//NYT->setWeight(1);
 
 	this->NYT = NYT->getLeft();// set the nyt as the current NYT left node
 
@@ -146,22 +140,25 @@ string Tree::calculateCode(Node* charNode)
 	Node* currentNode;
 	currentNode = charNode;
 	string calculatedCode = "";
+	//transvere through tree until you reach the root 
 	while (currentNode!= Root)
 	{
-
 		if ((currentNode) == currentNode->getParent()->getLeft())
 		{
+			//insert 0 to the start of the string as left branch 
 			calculatedCode.insert(0,"0");
 		}
 		else
 		{
+			//insert 1 to the start of the string as right branch 
 			calculatedCode.insert(0, "1");
 
 		}
-		//	shift --string maybe 
+		//move to the next node up (its parent)
 		currentNode = currentNode->getParent();
 	}
 	
+	//return the huffman code for the character 
 	return calculatedCode;
 } 
 
